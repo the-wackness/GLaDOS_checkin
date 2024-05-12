@@ -26,8 +26,10 @@ if __name__ == '__main__':
         checkin = requests.post(checkin_url,
                                 headers={'cookie':cookie,'referrer':referrer,'origin':origin,'user-agent':useragent,'content-type':'application/json; charset=utf-8'},data = json.dumps(payload))
         status = requests.get(status_url,headers={'cookie':cookie,'referrer':referrer,'origin':origin,'useragent':useragent})
-        
-        days = str(status.json()['data']['leftDays']).split('.')[0]
+        try:
+            days = str(status.json()['data']['leftDays']).split('.')[0]
+        except keyError:
+            days = 'keyError: key not exist'
         email = status.json()['data']['email']
 
         balance = str(checkin.json()['list'][0]['balance']).split('.')[0]
