@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   schedule:
     # UTC 0点0分(北京时间 8点0分) github的工作流一般会有 1小时延迟 ，大概9点才打卡
-    - cron: 33 */23 * * *
+    - cron: 55 */23 * * *
   # 标星时触发工作流程
   watch:
     types: [started]
