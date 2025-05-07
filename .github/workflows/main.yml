@@ -1,31 +1,31 @@
-name: GLaDOS签到
+# name: GLaDOS签到
 
-on:
-  workflow_dispatch:
-  schedule:
-    # UTC 0点0分(北京时间 8点0分) github的工作流一般会有 1小时延迟 ，大概9点才打卡
-    - cron: 0 0/25 * * *
-  # 标星时触发工作流程
-  watch:
-    types: [started]
+# on:
+#   workflow_dispatch:
+#   schedule:
+#     # UTC 0点0分(北京时间 8点0分) github的工作流一般会有 1小时延迟 ，大概9点才打卡
+#     - cron: 0 0/25 * * *
+#   # 标星时触发工作流程
+#   watch:
+#     types: [started]
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Set up Python 3.9
-        uses: actions/setup-python@v3
-        with:
-          python-version: 3.9
-      - name: Install requirements
-        run: |
-          python -m pip install --upgrade pip
-          pip install requests
-      - name: Run checkin
-        run: |
-          python3 glados.py
-        env: 
-          GLADOS_COOKIES: "${{ secrets.GLADOS_COOKIES }}"
-          PUSHPLUS_TOKEN: ${{ secrets.PUSHPLUS_TOKEN }}
-      - uses: gautamkrishnar/keepalive-workflow@master  
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v3
+#       - name: Set up Python 3.9
+#         uses: actions/setup-python@v3
+#         with:
+#           python-version: 3.9
+#       - name: Install requirements
+#         run: |
+#           python -m pip install --upgrade pip
+#           pip install requests
+#       - name: Run checkin
+#         run: |
+#           python3 glados.py
+#         env: 
+#           GLADOS_COOKIES: "${{ secrets.GLADOS_COOKIES }}"
+#           PUSHPLUS_TOKEN: ${{ secrets.PUSHPLUS_TOKEN }}
+#       - uses: gautamkrishnar/keepalive-workflow@master  
